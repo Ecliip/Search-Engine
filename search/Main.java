@@ -26,7 +26,7 @@ public class Main {
             Map<String, List<Integer>> result;
             if ("1".equals(usrStr)) {
                 System.out.println("\nSelect a matching strategy: ALL, ANY, NONE");
-                String strategyString = scan.nextLine();
+                String strategyString = scan.nextLine().toUpperCase();
                 System.out.println("\nEnter a name or email to search all suitable people.");
                 usrStr = scan.nextLine();
 
@@ -34,9 +34,9 @@ public class Main {
                 if ("ALL".equalsIgnoreCase(strategyString)) {
                     searcher = new Searcher(new SearchAllMatches());
                 } else if ("ANY".equalsIgnoreCase(strategyString)) {
-                    searcher = new Searcher(new SearchAnyMatches());;
+                    searcher = new Searcher(new SearchAnyMatches());
                 } else if ("NONE".equalsIgnoreCase(strategyString)) {
-                    searcher = new Searcher(new SearchNoneMatches());;
+                    searcher = new Searcher(new SearchNoneMatches());
                 }
                 result = searcher.search(usrStr, docScan);
                 printDataByLineNumber(result, filePath, usrStr); // test
@@ -141,7 +141,7 @@ class SearchAllMatches implements SearchStrategy {
                 if (matchCounter == matchesNeeded) {
                     map.get(query).add(index);
                     break;
-                };
+                }
             }
 
             index++;
